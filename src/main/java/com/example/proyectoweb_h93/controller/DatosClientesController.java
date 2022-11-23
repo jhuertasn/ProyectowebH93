@@ -1,7 +1,7 @@
 package com.example.proyectoweb_h93.controller;
 
 import com.example.proyectoweb_h93.entity.DatosClientesEntity;
-import com.example.proyectoweb_h93.interfa.DatosClientesInterface;
+import com.example.proyectoweb_h93.repository.DatosClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +14,9 @@ import java.util.List;
 public class DatosClientesController {
     //declararamos que esta variable viene con una clase com @Autowired
     @Autowired
-    private DatosClientesInterface datosClientesInterface;
+    private DatosClientesRepository datosClientesInterface;
     //siempre poner @getMapping para que la clase capture los datos del MySQL
-    @GetMapping
+    @GetMapping("/Listar")
     public List<DatosClientesEntity> busquedaDatoCliente (){
         //Con findAll() traemos toda la informacion del objeto datosClientesInterface
         return (List<DatosClientesEntity>) datosClientesInterface.findAll();
@@ -25,19 +25,19 @@ public class DatosClientesController {
     //empieza lo que se avanzo en la clase del viernes 9 de setiembre del 2022
 
     //create
-    @PostMapping
+    @PostMapping("/insertar")
     public void crearDatoCliente (@RequestBody DatosClientesEntity DatCliEnt){
         datosClientesInterface.save(DatCliEnt);
     }
 
     //UPDATE
-    @PutMapping
+    @PutMapping("/modificar")
     public void actualizarDatoCliente (@RequestBody DatosClientesEntity DatCliEnt) {
         datosClientesInterface.save(DatCliEnt);
     }
 
     //DELETE
-    @DeleteMapping (value = "/{id}")
+    @DeleteMapping (value = "/eliminar/{id}")
     //capturando la variable id
     public void eliminarDatoCliente (@PathVariable ("id") Integer id){
         //Eliminas por id
@@ -45,7 +45,7 @@ public class DatosClientesController {
     }
 
     //delete y put sin busqueda de datos  o Cambiar el dato que solo nesesito//
-    @PutMapping (value = "/{id}")
+    @PutMapping (value = "/modificardato/{id}")
     public ResponseEntity <DatosClientesEntity> actualizarDatoClienteEspecifico (@PathVariable ("id") Integer id, @RequestBody DatosClientesEntity DatCliEntJson) {
         DatosClientesEntity DatClientBD = datosClientesInterface.findById(id).orElseThrow();
 

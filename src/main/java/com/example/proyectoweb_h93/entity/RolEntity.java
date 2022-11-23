@@ -1,5 +1,7 @@
 package com.example.proyectoweb_h93.entity;
 
+
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +13,7 @@ public class RolEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;
     private String nombrol;
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "rolusario")
     private Set<UsuarioRolEntity> rolusuarioentity = new HashSet<>();

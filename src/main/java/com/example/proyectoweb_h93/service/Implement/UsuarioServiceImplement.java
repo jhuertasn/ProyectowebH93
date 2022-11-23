@@ -42,7 +42,7 @@ public class UsuarioServiceImplement implements UsuarioServices {
     }
 
     @Override
-    public void eliminarUsuarioService(int idusuarios) {
+    public void eliminarUsuarioService(int idusurios) {
 
     }
 

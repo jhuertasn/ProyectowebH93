@@ -14,6 +14,7 @@ public class Authority implements GrantedAuthority {
 
     @Override
     public  String getAuthority(){
-        return null;
+        //estaba en null
+        return this.authority;
     }
 }

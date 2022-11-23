@@ -1,5 +1,9 @@
 package com.example.proyectoweb_h93.entity;
 
+//import net.minidev.json.annotate.JsonIgnore;
+// se debe importan el @jasonIgnore con esta anotacion
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +13,11 @@ public class UsuarioRolEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idusuariorol;
 
+    // siempre poner jsonIgnore encima de @ManytoOne para que no salga error en el responde
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private UsuariosEntity usuariorol;
+    @JsonIgnore
     @ManyToOne
     private RolEntity rolusario;
 

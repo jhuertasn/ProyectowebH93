@@ -1,5 +1,6 @@
 package com.example.proyectoweb_h93.entity;
 
+
 import javax.persistence.*;
 
 @Entity

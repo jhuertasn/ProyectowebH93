@@ -15,8 +15,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
+
 @RestController
 @RequestMapping("/autenticacion")
+@CrossOrigin("*")
 public class AutenticacionController {
 
     //se construlle una variable userDetail para usar todas las funciones de esa clase
@@ -29,9 +33,10 @@ public class AutenticacionController {
     @Autowired
     private JwtUtilies jwtUtiles;
 
+    //se agrego la clase Principal y getName en ves de ""
     @GetMapping("/userloggin")
-    public UsuariosEntity obtenerUsuario(){
-        return  (UsuariosEntity) userDetail.loadUserByUsername("");
+    public UsuariosEntity obtenerUsuario(Principal principal){
+        return  (UsuariosEntity) userDetail.loadUserByUsername(principal.getName());
     }
 
     @PostMapping("/generartoken")

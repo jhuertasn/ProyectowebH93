@@ -3,6 +3,7 @@ package com.example.proyectoweb_h93.service;
 import com.example.proyectoweb_h93.entity.UsuariosEntity;
 import com.example.proyectoweb_h93.entity.UsuarioRolEntity;
 
+
 import java.util.Set;
 
 public interface UsuarioServices {
@@ -11,5 +12,5 @@ public interface UsuarioServices {
     //Metodo Get
     public UsuariosEntity obtenerUsuarioService (String username);
     //chequear idusurios en usuarios entity
-    public void eliminarUsuarioService (int idusuarios);
+    public void eliminarUsuarioService (int idusurios);
 }

@@ -1,6 +1,7 @@
 package com.example.proyectoweb_h93.entity;
 
-import net.minidev.json.annotate.JsonIgnore;
+//import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -26,7 +27,7 @@ public class UsuariosEntity implements UserDetails {
     //valor boleano en IntelliJ
     public boolean enable = true;
 
-    public UsuariosEntity(Integer idusurios, String username, String password, String nombuser, String apelliuser, String emailuser, String telefuser, String perfiluser, boolean enable) {
+    /*public UsuariosEntity(Integer idusurios, String username, String password, String nombuser, String apelliuser, String emailuser, String telefuser, String perfiluser, boolean enable) {
         this.idusurios = idusurios;
         this.username = username;
         this.password = password;
@@ -36,7 +37,8 @@ public class UsuariosEntity implements UserDetails {
         this.telefuser = telefuser;
         this.perfiluser = perfiluser;
         this.enable = enable;
-    }
+    }*/
+
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuariorol")
     @JsonIgnore
