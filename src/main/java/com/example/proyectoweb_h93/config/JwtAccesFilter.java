@@ -62,7 +62,7 @@ public class JwtAccesFilter extends WebSecurityConfigurerAdapter {
                 .cors()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/autenticacion/generartoken","/usuario/registrarUsuario","/usuario/*").permitAll()
+                .antMatchers("/autenticacion/generartoken","/pregunta","/examen","/categoria","/usuario/registrarUsuario","/usuario/*").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
