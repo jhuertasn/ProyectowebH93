@@ -1,25 +1,40 @@
 package com.example.proyectoweb_h93.controller;
 
+
 import com.example.proyectoweb_h93.entity.CategoriaEntity;
-import com.example.proyectoweb_h93.entity.CuentaClienteEntity;
-import com.example.proyectoweb_h93.repository.CategoriaRepository;
+
+import com.example.proyectoweb_h93.service.CategoriaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/categoria")
+@CrossOrigin("*")
 public class CategoriaController {
+
     @Autowired
-    private CategoriaRepository CategoriaRepository;
-    @GetMapping
-    public List<CategoriaEntity> busquedaCategoria (){
-        return (List<CategoriaEntity>) CategoriaRepository.findAll();
+    private CategoriaService categoriaService;
+    @GetMapping("/listar")
+    //respuesta del response es tipo Json
+    public ResponseEntity<?> listarcategoria (){
+        return ResponseEntity.ok(categoriaService.obtenerCategorias());
     }
 
-    @PostMapping
-    public void crearcategoria (@RequestBody CategoriaEntity categoriaClient){
-        CategoriaRepository.save(categoriaClient);
+    @GetMapping("/listar/{idCategoria}")
+    //respuesta del response es tipo Json
+    public CategoriaEntity listarcategoriaId (@PathVariable ("idCategoria")Long idCategoria){
+        return categoriaService.obtenerCategoria(idCategoria);
     }
+
+    @PostMapping ("/agregar")
+    public ResponseEntity<CategoriaEntity> agregarCategoria (@RequestBody CategoriaEntity categoria){
+        CategoriaEntity categorianueva = categoriaService.agregarCategoria(categoria);
+        //le digo a mi response que me envie mi categorianueva
+        return ResponseEntity.ok(categorianueva);
+    }
+
+
 }

@@ -7,18 +7,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name ="examen")
+@Table(name ="examenes")
 public class ExamenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer examenid;
+    private Long examenId;
 
-    public Integer getExamenid() {
-        return examenid;
+    private String titulo;
+    private String descripcion;
+    private String puntosmaximos;
+    private String numerodepreguntas;
+    public boolean activo = false;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    private CategoriaEntity categoria;
+
+    @OneToMany(mappedBy = "examen",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<PreguntaEntity> preguntas = new HashSet<>();
+
+    public Long getExamenId() {
+        return examenId;
     }
 
-    public void setExamenid(Integer examenid) {
-        this.examenid = examenid;
+    public void setExamenId(Long examenId) {
+        this.examenId = examenId;
     }
 
     public String getTitulo() {
@@ -53,12 +67,12 @@ public class ExamenEntity {
         this.numerodepreguntas = numerodepreguntas;
     }
 
-    public boolean isEnable() {
-        return enable;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setEnable(boolean enable) {
-        this.enable = enable;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public CategoriaEntity getCategoria() {
@@ -69,26 +83,13 @@ public class ExamenEntity {
         this.categoria = categoria;
     }
 
-
-    private String titulo;
-    private String descripcion;
-    private String puntosmaximos;
-    private String numerodepreguntas;
-    public boolean enable = false;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    private CategoriaEntity categoria;
-
-    public Set<PreguntaEntity> getPreguntaentity() {
-        return preguntaentity;
+    public Set<PreguntaEntity> getPreguntas() {
+        return preguntas;
     }
 
-    public void setPreguntaentity(Set<PreguntaEntity> preguntaentity) {
-        this.preguntaentity = preguntaentity;
+    public void setPreguntas(Set<PreguntaEntity> preguntas) {
+        this.preguntas = preguntas;
     }
-
-    @OneToMany(mappedBy = "examen",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set<PreguntaEntity> preguntaentity = new HashSet<>();
 
 
     public ExamenEntity(){

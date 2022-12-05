@@ -3,24 +3,29 @@ package com.example.proyectoweb_h93.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="categoria")
+@Table(name="categorias")
 public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoriaId;
+    private Long categoriaId;
     private String titulo;
     private String descripcion;
 
-    public Integer getCategoriaId() {
+
+    @OneToMany(mappedBy = "categoria",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<ExamenEntity> examenes = new LinkedHashSet<>();
+
+    public Long getCategoriaId() {
         return categoriaId;
     }
 
-    public void setCategoriaId(Integer categoriaId) {
+    public void setCategoriaId(Long categoriaId) {
         this.categoriaId = categoriaId;
     }
 
@@ -40,16 +45,16 @@ public class CategoriaEntity {
         this.descripcion = descripcion;
     }
 
-
-    public Set<ExamenEntity> getExamenEntity() {
-        return examenEntity;
+    public Set<ExamenEntity> getExamenes() {
+        return examenes;
     }
 
-    public void setExamenEntity(Set<ExamenEntity> examenEntity) {
-        this.examenEntity = examenEntity;
+    public void setExamenes(Set<ExamenEntity> examenes) {
+        this.examenes = examenes;
     }
 
-    @OneToMany(mappedBy = "categoria",cascade = CascadeType.ALL)
-    private Set<ExamenEntity> examenEntity = new HashSet<>();
+    public CategoriaEntity(){
+
+    }
 
 }

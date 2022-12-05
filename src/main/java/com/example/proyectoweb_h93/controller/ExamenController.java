@@ -1,6 +1,5 @@
 package com.example.proyectoweb_h93.controller;
 
-import com.example.proyectoweb_h93.entity.CategoriaEntity;
 import com.example.proyectoweb_h93.entity.ExamenEntity;
 import com.example.proyectoweb_h93.repository.ExamenRepository;
 import org.springframework.beans.factory.annotation.Autowired;

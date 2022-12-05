@@ -5,19 +5,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="pregunta")
+@Table(name ="preguntas")
 public class PreguntaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer preguntaid;
+    private Long preguntaId;
+    @Column(length = 5000)
     private String contenido;
 
-    public Integer getPreguntaid() {
-        return preguntaid;
+    private String imagen;
+    private String opcion1;
+    private String opcion2;
+    private String opcion3;
+    private String opcion4;
+    @Transient
+    private String respuestaDada;
+
+    private String respuesta;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ExamenEntity examen;
+
+    public Long getPreguntaId() {
+        return preguntaId;
     }
 
-    public void setPreguntaid(Integer preguntaid) {
-        this.preguntaid = preguntaid;
+    public void setPreguntaId(Long preguntaId) {
+        this.preguntaId = preguntaId;
     }
 
     public String getContenido() {
@@ -26,6 +41,14 @@ public class PreguntaEntity {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getOpcion1() {
@@ -60,12 +83,20 @@ public class PreguntaEntity {
         this.opcion4 = opcion4;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getRespuestaDada() {
+        return respuestaDada;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setRespuestaDada(String respuestaDada) {
+        this.respuestaDada = respuestaDada;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     public ExamenEntity getExamen() {
@@ -76,12 +107,8 @@ public class PreguntaEntity {
         this.examen = examen;
     }
 
-    private String opcion1;
-    private String opcion2;
-    private String opcion3;
-    private String opcion4;
-    private String imagen;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    private ExamenEntity examen;
+    public PreguntaEntity(){
+
+    }
+
 }
