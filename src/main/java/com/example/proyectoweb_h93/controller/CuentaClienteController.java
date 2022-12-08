@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cuentacliente")
+@CrossOrigin ("*")
 public class CuentaClienteController {
     @Autowired
     private CuentaClienteInterface cuentaClienteInterface;

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pregunta")
+@CrossOrigin ("*")
 public class PreguntaController {
     @Autowired
     private PreguntaRepository PreguntaRepository;

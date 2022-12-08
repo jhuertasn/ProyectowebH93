@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/examen")
+@CrossOrigin ("*")
 public class ExamenController {
     @Autowired
     private ExamenRepository ExamenRepository;

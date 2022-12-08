@@ -11,6 +11,7 @@ import java.util.List;
 //Le decimos al java clas que esta clase es un controllador con @RestController//
 @RestController
 @RequestMapping ("/datocliente")
+@CrossOrigin ("*")
 public class DatosClientesController {
     //declararamos que esta variable viene con una clase com @Autowired
     @Autowired
