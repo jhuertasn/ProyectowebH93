@@ -34,7 +34,7 @@ public class ExamenController {
         return examenService.obtenerExamen(idexamen);
     }
 
-    @DeleteMapping (value = "/eliminar/{idexamen}")
+    /*@DeleteMapping (value = "/eliminar/{idexamen}")
     //capturando la variable id
     public void eliminarExamen (@PathVariable ("idexamen") Long examenId){
         //Eliminas por id
@@ -68,5 +68,5 @@ public class ExamenController {
             }
         }
         return examenService.obtenerExamenesActivosDeUnaCategoria(categoria);
-    }
+    }*/
 }
