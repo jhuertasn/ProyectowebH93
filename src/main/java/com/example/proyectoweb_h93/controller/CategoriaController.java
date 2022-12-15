@@ -3,6 +3,7 @@ package com.example.proyectoweb_h93.controller;
 
 import com.example.proyectoweb_h93.entity.CategoriaEntity;
 
+import com.example.proyectoweb_h93.entity.ExamenEntity;
 import com.example.proyectoweb_h93.service.CategoriaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,17 @@ public class CategoriaController {
         return ResponseEntity.ok(categorianueva);
     }
 
+    @PutMapping
+    public void actualizarCategoria (@RequestBody CategoriaEntity categoria){
+        categoriaService.actualizarCategoria(categoria);
+    }
+
+
+    @DeleteMapping (value = "/eliminar/{idCategoria}")
+    //capturando la variable id
+    public void eliminarCategoria (@PathVariable ("idCategoria") Long categoriaId){
+        //Eliminas por id
+        categoriaService.eliminarCategoria(categoriaId);
+    }
 
 }
