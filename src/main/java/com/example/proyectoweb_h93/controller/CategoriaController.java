@@ -18,35 +18,30 @@ public class CategoriaController {
 
     @Autowired
     private CategoriaService categoriaService;
-    @GetMapping("/listar")
-    //respuesta del response es tipo Json
-    public ResponseEntity<?> listarcategoria (){
+
+    @PostMapping("/agregar")
+    public ResponseEntity<CategoriaEntity> guardarCategoria(@RequestBody CategoriaEntity categoria){
+        CategoriaEntity categoriaGuardada = categoriaService.agregarCategoria(categoria);
+        return ResponseEntity.ok(categoriaGuardada);
+    }
+
+    @GetMapping("/{categoriaId}")
+    public CategoriaEntity listarCategoriaPorId(@PathVariable("categoriaId") Long categoriaId){
+        return categoriaService.obtenerCategoria(categoriaId);
+    }
+
+    @GetMapping("/obtener")
+    public ResponseEntity<?> listarCategorias(){
         return ResponseEntity.ok(categoriaService.obtenerCategorias());
     }
 
-    @GetMapping("/listar/{idCategoria}")
-    //respuesta del response es tipo Json
-    public CategoriaEntity listarcategoriaId (@PathVariable ("idCategoria")Long idCategoria){
-        return categoriaService.obtenerCategoria(idCategoria);
+    @PutMapping("/modificar")
+    public CategoriaEntity actualizarCategoria(@RequestBody CategoriaEntity categoria){
+        return categoriaService.actualizarCategoria(categoria);
     }
 
-    @PostMapping ("/agregar")
-    public ResponseEntity<CategoriaEntity> agregarCategoria (@RequestBody CategoriaEntity categoria){
-        CategoriaEntity categorianueva = categoriaService.agregarCategoria(categoria);
-        //le digo a mi response que me envie mi categorianueva
-        return ResponseEntity.ok(categorianueva);
-    }
-
-    @PutMapping
-    public void actualizarCategoria (@RequestBody CategoriaEntity categoria){
-        categoriaService.actualizarCategoria(categoria);
-    }
-
-
-    @DeleteMapping (value = "/eliminar/{idCategoria}")
-    //capturando la variable id
-    public void eliminarCategoria (@PathVariable ("idCategoria") Long categoriaId){
-        //Eliminas por id
+    @DeleteMapping("/eliminar/{categoriaId}")
+    public void eliminarCategoria(@PathVariable("categoriaId") Long categoriaId){
         categoriaService.eliminarCategoria(categoriaId);
     }
 

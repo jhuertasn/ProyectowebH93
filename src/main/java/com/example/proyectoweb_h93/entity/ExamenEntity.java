@@ -12,14 +12,12 @@ public class ExamenEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long examenId;
-
     private String titulo;
     private String descripcion;
-    private String puntosmaximos;
-    private String numerodepreguntas;
-    public boolean activo = false;
+    private String puntosMaximos;
+    private String numeroDePreguntas;
+    private boolean activo = false;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     private CategoriaEntity categoria;
 
@@ -51,20 +49,20 @@ public class ExamenEntity {
         this.descripcion = descripcion;
     }
 
-    public String getPuntosmaximos() {
-        return puntosmaximos;
+    public String getPuntosMaximos() {
+        return puntosMaximos;
     }
 
-    public void setPuntosmaximos(String puntosmaximos) {
-        this.puntosmaximos = puntosmaximos;
+    public void setPuntosMaximos(String puntosMaximos) {
+        this.puntosMaximos = puntosMaximos;
     }
 
-    public String getNumerodepreguntas() {
-        return numerodepreguntas;
+    public String getNumeroDePreguntas() {
+        return numeroDePreguntas;
     }
 
-    public void setNumerodepreguntas(String numerodepreguntas) {
-        this.numerodepreguntas = numerodepreguntas;
+    public void setNumeroDePreguntas(String numeroDePreguntas) {
+        this.numeroDePreguntas = numeroDePreguntas;
     }
 
     public boolean isActivo() {
@@ -91,8 +89,7 @@ public class ExamenEntity {
         this.preguntas = preguntas;
     }
 
-
-    public ExamenEntity(){
+    public ExamenEntity() {
 
     }
 }

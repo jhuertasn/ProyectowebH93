@@ -23,7 +23,7 @@ public class PreguntaEntity {
 
     private String respuesta;
 
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     private ExamenEntity examen;
 
